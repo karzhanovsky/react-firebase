@@ -11,13 +11,30 @@ import ForgotPasswordPage from './forgotten-password';
 import AccountPage from './account';
 
 import * as routes from '../constants/routes';
+import { firebase } from '../firebase';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      authUser: null,
+    };
+  }
+
+  componentDidMount() {
+    firebase.auth.onAuthStateChanged(authUser => {
+      authUser
+      ? this.setState(() => ({ authUser }))
+      : this.setState(() => ({ authUser: null }));
+    });
+  }
+
   render() {
     return (
       <Router>
         <div>
-          <Navigation />
+          <Navigation authUser={this.state.authUser} />
           <Route exact path={routes.REGISTER} component={() => <RegisterPage/>} />
           <Route exact path={routes.LOGIN} component={() => <LoginPage/>} />
           <Route exact path={routes.LANDING} component={() => <LandingPage/>} />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter, } from 'react-router-dom';
+import { withRouter, } from 'react-router-dom';
 
 import * as routes from '../constants/routes';
 import { auth } from '../firebase';
@@ -100,16 +100,8 @@ class RegisterForm extends Component {
   }
 };
 
-  const RegisterLink = () =>
-    <p>
-      Dont have an account?
-      {' '}
-      <Link to={routes.REGISTER}>Register</Link>
-    </p>
-
 export default withRouter(RegisterPage);
 
 export {
   RegisterForm,
-  RegisterLink,
 };

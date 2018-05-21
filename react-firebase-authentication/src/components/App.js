@@ -34,6 +34,7 @@ class App extends Component {
     return (
       <Router>
         <div>
+        <h1>REACT CONTEXT API</h1>
           <Navigation authUser={this.state.authUser} />
           <Route exact path={routes.REGISTER} component={() => <RegisterPage/>} />
           <Route exact path={routes.LOGIN} component={() => <LoginPage/>} />

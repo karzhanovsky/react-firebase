@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 
 const config = {
-    apiKey: "AIzaSyDzzwskxZx66VRgVgOHFzIFQB_w5Y13rQE",
+    apiKey: "*",
     authDomain: "react-implementation.firebaseapp.com",
     databaseURL: "https://react-implementation.firebaseio.com",
     projectId: "react-implementation",

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter, } from 'react-router-dom';
 
 import * as routes from '../constants/routes';
 import { auth } from '../firebase';
 
-const RegisterPage = () =>
+const RegisterPage = ({ history }) =>
   <div>
     <h1>Register page</h1>
-    <RegisterForm />
+    <RegisterForm history={history} />
   </div>
 
 const INITIAL_STATE = {
@@ -37,9 +37,14 @@ class RegisterForm extends Component {
       passwordOne,
     } = this.state;
 
+    const {
+      history,
+    } = this.props;
+
     auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
           this.setState(() => ({...INITIAL_STATE}));
+          history.push(routes.HOME)
       })
       .catch(error => {
         this.setState(byPropKey('error', error));
@@ -89,7 +94,7 @@ class RegisterForm extends Component {
           Register
         </button>
 
-        {error && <p>error.message</p> }
+        {error && <p>{error.message}</p> }
       </form>
     );
   }
@@ -102,7 +107,7 @@ class RegisterForm extends Component {
       <Link to={routes.REGISTER}>Register</Link>
     </p>
 
-export default RegisterPage;
+export default withRouter(RegisterPage);
 
 export {
   RegisterForm,

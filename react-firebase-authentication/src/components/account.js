@@ -1,8 +1,12 @@
 import React from 'react';
 
+import AuthUserContext from './AuthUserContext';
+
 const AccountPage = () =>
-  <div>
-    <h1>Account page</h1>
-  </div>
+  <AuthUserContext.Consumer>
+    {authUser =>
+      authUser && <p>Account: {authUser.email}</p>
+    }
+  </AuthUserContext.Consumer>
 
 export default AccountPage;
